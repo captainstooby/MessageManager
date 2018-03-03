@@ -13,8 +13,6 @@ namespace MessageManager.Helpers
 
         public string NumberizeText(string word, int counter)
         {
-            //var pluralizationService = CG.Pluralization.PluralizationService.CreateService();
-
             if (counter == 1)
             {
                 return _pluralizationService.Singularize(word);
