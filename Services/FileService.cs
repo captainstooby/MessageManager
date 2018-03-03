@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using MessageManager.Domain.Import;
 
@@ -49,8 +50,7 @@ namespace MessageManager.Services
         {
             var date = fileParts[1].Substring(0, 8);
 
-            return DateTime.ParseExact(date, "MMddyyyy",
-                                       System.Globalization.CultureInfo.InvariantCulture);
+            return DateTime.ParseExact(date, "MMddyyyy", CultureInfo.InvariantCulture);
         }
     }
 }

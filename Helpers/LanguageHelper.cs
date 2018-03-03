@@ -13,12 +13,9 @@ namespace MessageManager.Helpers
 
         public string NumberizeText(string word, int counter)
         {
-            if (counter == 1)
-            {
-                return _pluralizationService.Singularize(word);
-            }
-
-            return _pluralizationService.Pluralize(word);
+            return (counter == 1)
+                    ? _pluralizationService.Singularize(word)
+                    : _pluralizationService.Pluralize(word);
         }
     }
 }
