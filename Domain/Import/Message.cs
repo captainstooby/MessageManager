@@ -2,7 +2,7 @@
 
 namespace MessageManager.Domain.Import
 {
-    public class MessageToImport
+    public class Message
     {
         public string Mp3FileName { get; internal set; }
         public DateTime DateOfRecording { get; internal set; }

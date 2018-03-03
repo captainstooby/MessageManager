@@ -24,7 +24,8 @@ namespace MessageManager.Services
 
             try
             {
-                List<MessageToImport> messagesToImport = _fileService.GetFilesFromDirectory(messageSourceDirectory);
+                List<Message> messagesToImport = 
+                    _fileService.GetFilesFromDirectory(messageSourceDirectory);
 
                 if (messagesToImport.Count > 0)
                 {
@@ -58,7 +59,7 @@ namespace MessageManager.Services
             }
         }
 
-        private void ImportMessage(MessageToImport messageToImport)
+        private void ImportMessage(Message messageToImport)
         {
             try
             {

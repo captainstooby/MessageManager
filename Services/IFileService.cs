@@ -5,6 +5,6 @@ namespace MessageManager.Services
 {
     public interface IFileService
     {
-        List<MessageToImport> GetFilesFromDirectory(string directoryLocation);
+        List<Message> GetFilesFromDirectory(string directoryLocation);
     }
 }

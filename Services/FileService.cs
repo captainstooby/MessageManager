@@ -8,15 +8,15 @@ namespace MessageManager.Services
 {
     public class FileService : IFileService
     {
-        public List<MessageToImport> GetFilesFromDirectory(string directoryLocation)
+        public List<Message> GetFilesFromDirectory(string directoryLocation)
         {
-            var messagesToImport = new List<MessageToImport>();
+            var messagesToImport = new List<Message>();
 
             foreach (var file in Directory.GetFiles(directoryLocation))
             {
                 var fileMetadata = GetFileMetadata(file);
 
-                messagesToImport.Add(new MessageToImport()
+                messagesToImport.Add(new Message()
                 {
                     Mp3FileName = fileMetadata.Mp3FileName,
                     DateOfRecording = fileMetadata.DateOfRecording
