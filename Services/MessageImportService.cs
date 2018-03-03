@@ -39,7 +39,7 @@ namespace MessageManager.Services
                 return new ImportResponse()
                 {
                     SuccessMessage =
-                    string.Format("Import process complete!:  {0} {1} {2} succesfully imported.", 
+                    string.Format("Import process complete!  {0} {1} {2} succesfully imported.", 
                     importedMessagesCount,
                     _languageHelper.NumberizeText("message", importedMessagesCount),
                     _languageHelper.NumberizeText("were", importedMessagesCount))

@@ -14,7 +14,7 @@ namespace MessageManager.Services
 
             foreach (var file in Directory.GetFiles(directoryLocation))
             {
-                var fileMetadata = GetFileMetaData(file);
+                var fileMetadata = GetFileMetadata(file);
 
                 messagesToImport.Add(new MessageToImport()
                 {
@@ -26,19 +26,19 @@ namespace MessageManager.Services
             return messagesToImport;
         }
 
-        private FileMetaData GetFileMetaData(string file)
+        private FileMetadata GetFileMetadata(string file)
         {
             try
             {
-                var fileMetaData = new FileMetaData();
+                var fileMetadata = new FileMetadata();
 
-                fileMetaData.Mp3FileName = file;
+                fileMetadata.Mp3FileName = file;
 
                 var fileParts = file.Split("_");
 
-                fileMetaData.DateOfRecording = GetDateOfRecording(fileParts);
+                fileMetadata.DateOfRecording = GetDateOfRecording(fileParts);
 
-                return fileMetaData;
+                return fileMetadata;
             }
             catch (Exception)
             {
