@@ -12,6 +12,7 @@ namespace Data.Repositories
     {
         bool Add(Message message);
         List<Message> GetAllMessages();
+        Message GetMessageById(int id);
     }
 
     public class MessageRepository : IMessageRepository
@@ -68,6 +69,25 @@ namespace Data.Repositories
             }
 
             return allMessages;
+        }
+
+        public Message GetMessageById(int id)
+        {
+            Message messageById;
+            try
+            {
+                using (var db = new SqlConnection(_configuration["Data:ConnectionString"]))
+                {
+                    messageById = db.QuerySingle<Message>("dbo.GetMessageById", new { @Id = id }, null, null, CommandType.StoredProcedure);
+                }
+            }
+            catch (System.Exception)
+            {
+                //TODO:  Probably want to eventually log what happened if it failed.
+                return null;
+            }
+
+            return messageById;
         }
     }
 }

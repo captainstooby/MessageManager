@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net;
 using MessageManager.Domain.Import;
 using MessageManager.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -24,9 +25,16 @@ namespace MessageManager.Controllers
 
         // GET: api/Messages/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        public ObjectResult Get(int id)
         {
-            return "value";
+            var message = _messageService.GetMessageById(id);
+
+            if (message == null)
+            {
+                return StatusCode((int)HttpStatusCode.NotFound, "The message was not");
+            }
+
+            return Ok(message);
         }
         
         // POST: api/Messages

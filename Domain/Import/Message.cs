@@ -5,6 +5,7 @@ namespace MessageManager.Domain.Import
 {
     public class Message
     {
+        public int Id { get; private set; }
         public string MessagePath { get; set; }
         public DateTime MessageRecordingDate { get; set; }
         [Newtonsoft.Json.JsonIgnore]

@@ -7,6 +7,7 @@ namespace MessageManager.Services
     public interface IMessageService
     {
         IEnumerable<Message> GetAllMessages();
+        Message GetMessageById(int id);
     }
 
     public class MessageService : IMessageService
@@ -21,6 +22,11 @@ namespace MessageManager.Services
         public IEnumerable<Message> GetAllMessages()
         {
             return _messageRepository.GetAllMessages();
+        }
+
+        public Message GetMessageById(int id)
+        {
+            return _messageRepository.GetMessageById(id);
         }
     }
 }
