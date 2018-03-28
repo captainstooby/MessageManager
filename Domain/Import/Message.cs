@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace MessageManager.Domain.Import
 {
@@ -8,5 +9,14 @@ namespace MessageManager.Domain.Import
         public DateTime MessageRecordingDate { get; set; }
 
         public bool Imported { get; set; }
+
+        public override string ToString()
+        {
+            return ((new StringBuilder())
+                .AppendFormat("Message Path:  {0}", MessagePath)
+                .AppendLine()
+                .AppendFormat("Message Recording Date:  {0}", MessageRecordingDate))
+                .ToString();
+        }
     }
 }

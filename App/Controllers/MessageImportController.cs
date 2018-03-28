@@ -29,7 +29,7 @@ namespace MessageManager.Controllers
 
             if (results.IsError)
             {
-                return StatusCode((int)HttpStatusCode.InternalServerError, results.ErrorMessage);
+                return StatusCode((int)HttpStatusCode.InternalServerError, results);
             }
 
             return Ok(results.SuccessMessage);
