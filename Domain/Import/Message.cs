@@ -7,7 +7,7 @@ namespace MessageManager.Domain.Import
     {
         public string MessagePath { get; set; }
         public DateTime MessageRecordingDate { get; set; }
-
+        [Newtonsoft.Json.JsonIgnore]
         public bool Imported { get; set; }
 
         public override string ToString()
