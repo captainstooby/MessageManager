@@ -2,10 +2,6 @@ USE [master]
 GO
 
 /****** Object:  Database [MediaManagement]    Script Date: 3/27/2018 12:20:15 PM ******/
-DROP DATABASE [MediaManagement]
-GO
-
-/****** Object:  Database [MediaManagement]    Script Date: 3/27/2018 12:20:15 PM ******/
 CREATE DATABASE [MediaManagement]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -150,13 +146,6 @@ GO
 USE [MediaManagement]
 GO
 
-ALTER TABLE [dbo].[Messages] DROP CONSTRAINT [DF_Messages_InsertDate]
-GO
-
-/****** Object:  Table [dbo].[Messages]    Script Date: 3/27/2018 6:27:54 PM ******/
-DROP TABLE [dbo].[Messages]
-GO
-
 /****** Object:  Table [dbo].[Messages]    Script Date: 3/27/2018 6:27:54 PM ******/
 SET ANSI_NULLS ON
 GO
@@ -166,6 +155,7 @@ GO
 
 CREATE TABLE [dbo].[Messages](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[MessageName] VARCHAR(200) NULL,
 	[MessagePath] [varchar](200) NOT NULL,
 	[MessageRecordingDate] [datetime] NOT NULL,
 	[InsertDate] [datetime] NOT NULL,
@@ -181,10 +171,6 @@ USE [MediaManagement]
 GO
 
 /****** Object:  StoredProcedure [dbo].[InsertMessage]    Script Date: 3/27/2018 6:28:13 PM ******/
-DROP PROCEDURE [dbo].[InsertMessage]
-GO
-
-/****** Object:  StoredProcedure [dbo].[InsertMessage]    Script Date: 3/27/2018 6:28:13 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -196,7 +182,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-ALTER PROCEDURE [dbo].[InsertMessage]
+CREATE PROCEDURE [dbo].[InsertMessage]
 	-- Add the parameters for the stored procedure here
 	@MessagePath varchar(200), 
 	@MessageRecordingDate datetime

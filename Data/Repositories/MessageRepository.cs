@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using MessageManager.Domain.Import;
+using Microsoft.Extensions.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -12,11 +13,18 @@ namespace Data.Repositories
 
     public class MessageRepository : IMessageRepository
     {
+        private readonly IConfiguration _configuration;
+
+        public MessageRepository(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public bool Add(Message message)
         {
             try
             {
-                using (var db = new SqlConnection("Data Source=.\\SQLEXPRESS;Initial Catalog=MediaManagement;Integrated Security=True;MultipleActiveResultSets=True"))
+                using (var db = new SqlConnection(_configuration["Data:ConnectionString"]))
                 {
                     db.Execute("dbo.InsertMessage",
                         new
