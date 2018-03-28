@@ -1,3 +1,4 @@
+using Data.Repositories;
 using MessageManager.Helpers;
 using MessageManager.Services;
 using Microsoft.AspNetCore.Builder;
@@ -5,7 +6,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace MessageManager
 {
@@ -27,6 +27,7 @@ namespace MessageManager
             services.AddTransient<IFileService, FileService>();
             services.AddTransient<ILanguageHelper, LanguageHelper>();
             services.AddSingleton(CG.Pluralization.PluralizationService.CreateService());
+            services.AddTransient<IMessageRepository, MessageRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

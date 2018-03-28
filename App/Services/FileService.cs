@@ -1,8 +1,8 @@
-﻿using System;
+﻿using MessageManager.Domain.Import;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using MessageManager.Domain.Import;
 
 namespace MessageManager.Services
 {
