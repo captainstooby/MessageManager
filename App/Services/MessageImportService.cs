@@ -33,7 +33,7 @@ namespace MessageManager.Services
 
                 if (messagesToImport.Count > 0)
                 {
-                    foreach (var messageToImport in messagesToImport)
+                    foreach (var messageToImport in messagesToImport.OrderBy(m => m.DateOfRecording))
                     {
                         ImportMessage(messageToImport);
                     }
