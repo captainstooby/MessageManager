@@ -49,7 +49,8 @@ namespace MessageManager.Services
                 {
                     SuccessMessage = GetSuccessMessage(importedMessagesCount),
                     ErrorMessage = GetErrorMessage(unimportedMessages),
-                    IsError = unimportedMessages.Count() > 0
+                    IsError = IsError(unimportedMessages),
+                    MessagesUnableToImport = GetMessagesUnableToImport(unimportedMessages)
                 };
             }
             catch (Exception ex)
@@ -65,6 +66,19 @@ namespace MessageManager.Services
             }
         }
 
+        private List<Message> GetMessagesUnableToImport(IEnumerable<Message> unimportedMessages)
+        {
+            if (unimportedMessages != null && unimportedMessages.Count() > 0)
+                return unimportedMessages.ToList();
+
+            return null;
+        }
+
+        private static bool IsError(IEnumerable<Message> unimportedMessages)
+        {
+            return unimportedMessages.Count() > 0;
+        }
+
         private string GetErrorMessage(IEnumerable<Message> unimportedMessages)
         {
             if (unimportedMessages == null || unimportedMessages.Count() == 0)
@@ -75,11 +89,6 @@ namespace MessageManager.Services
             failedMessagesStringBuilder
                 .Append("The following messages could not be imported: ")
                 .Append("----------------------------------------------");
-
-            foreach (Message message in unimportedMessages)
-            {
-                failedMessagesStringBuilder.Append(message.ToString());
-            }
 
             return failedMessagesStringBuilder.ToString();
         }
