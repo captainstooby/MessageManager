@@ -18,8 +18,8 @@ namespace MessageManager.Services
 
                 messagesToImport.Add(new Message()
                 {
-                    Mp3FileName = fileMetadata.Mp3FileName,
-                    DateOfRecording = fileMetadata.DateOfRecording
+                    MessagePath = fileMetadata.Mp3FileName,
+                    MessageRecordingDate = fileMetadata.DateOfRecording
                 });
             }
 
@@ -30,11 +30,12 @@ namespace MessageManager.Services
         {
             try
             {
-                var fileMetadata = new FileMetadata();
+                var fileMetadata = new FileMetadata
+                {
+                    Mp3FileName = file
+                };
 
-                fileMetadata.Mp3FileName = file;
-
-                var fileParts = file.Split("_");
+                var fileParts = file.Split(Convert.ToChar("_"));
 
                 fileMetadata.DateOfRecording = GetDateOfRecording(fileParts);
 

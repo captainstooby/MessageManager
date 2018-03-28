@@ -1,14 +1,17 @@
 ﻿using Dapper;
 using MessageManager.Domain.Import;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Data.Repositories
 {
     public interface IMessageRepository
     {
         bool Add(Message message);
+        List<Message> GetAllMessages();
     }
 
     public class MessageRepository : IMessageRepository
@@ -29,8 +32,8 @@ namespace Data.Repositories
                     db.Execute("dbo.InsertMessage",
                         new
                         {
-                            @MessagePath = message.Mp3FileName,
-                            @MessageRecordingDate = message.DateOfRecording
+                            @MessagePath = message.MessagePath,
+                            @MessageRecordingDate = message.MessageRecordingDate
                         },
                         null,
                         null,
@@ -41,9 +44,30 @@ namespace Data.Repositories
             }
             catch (System.Exception)
             {
-                //Probably want to eventually log what happened if it failed.
+                //TODO:  Probably want to eventually log what happened if it failed.
                 return false;
             }
+        }
+
+        public List<Message> GetAllMessages()
+        {
+            List<Message> allMessages;
+            try
+            {
+                using (var db = new SqlConnection(_configuration["Data:ConnectionString"]))
+                {
+                    allMessages = db
+                        .Query<Message>("dbo.GetAllMessages", null, null, false, null, CommandType.StoredProcedure)
+                        .ToList();
+                }
+            }
+            catch (System.Exception)
+            {
+                //TODO:  Probably want to eventually log what happened if it failed.
+                throw;
+            }
+
+            return allMessages;
         }
     }
 }

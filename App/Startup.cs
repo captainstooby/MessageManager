@@ -29,6 +29,7 @@ namespace MessageManager
             services.AddSingleton(CG.Pluralization.PluralizationService.CreateService());
             services.AddTransient<IMessageRepository, MessageRepository>();
             services.AddSingleton<IConfiguration>(Configuration);
+            services.AddTransient<IMessageService, MessageService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

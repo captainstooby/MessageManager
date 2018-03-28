@@ -215,3 +215,32 @@ BEGIN
 END
 GO
 
+
+USE [MediaManagement]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GetAllMessages]    Script Date: 3/27/2018 9:06:09 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[GetAllMessages]
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	SELECT * FROM dbo.Messages
+END
+GO
+
+
+
