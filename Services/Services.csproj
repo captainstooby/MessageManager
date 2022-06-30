@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CG.Pluralization" Version="0.2018.4.6" />
+    <PackageReference Include="CG.Pluralization" Version="0.3000.12" />
   </ItemGroup>
 
   <ItemGroup>

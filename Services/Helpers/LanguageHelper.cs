@@ -1,4 +1,4 @@
-﻿using CG.Pluralization;
+﻿using System.Data.Entity.Design.PluralizationServices;
 
 namespace MessageManager.Helpers
 {
